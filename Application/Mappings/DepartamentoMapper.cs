@@ -1,4 +1,4 @@
-﻿using Application.Commands;
+﻿using Application.Commands.Departamentos;
 using Application.DTOs;
 using Domain.Entities;
 

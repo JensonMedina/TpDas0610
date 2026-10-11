@@ -1,4 +1,4 @@
-﻿using Application.Commands;
+﻿using Application.Commands.Empleados;
 using Application.DTOs;
 using Domain.Entities;
 
@@ -17,6 +17,7 @@ public static class EmpleadoMapper
     }
     public static EmpleadoDTO ToDto(Empleado empleado)
     {
-        return new EmpleadoDTO(empleado.Id, empleado.Nombre, empleado.Apellido, empleado.Sueldo);
+        var departamentoDto = DepartamentoMapper.ToDto(empleado.Departamento);
+        return new EmpleadoDTO(empleado.Id, empleado.Nombre, empleado.Apellido, departamentoDto);
     }
 }

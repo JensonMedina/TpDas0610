@@ -4,9 +4,9 @@ public class Result<T>
 {
     public T Value { get; }
     public bool IsSuccess { get; }
-    public string Error { get; }
+    public string? Error { get; }
 
-    protected Result(T value, bool isSuccess, string error)
+    protected Result(T value, bool isSuccess, string? error)
     {
         Value = value;
         IsSuccess = isSuccess;
@@ -14,5 +14,5 @@ public class Result<T>
     }
 
     public static Result<T> Success(T value) => new(value, true, null);
-    public static Result<T> Failure(string error) => new(default, false, error);
+    public static Result<T> Failure(string error) => new(default!, false, error);
 }

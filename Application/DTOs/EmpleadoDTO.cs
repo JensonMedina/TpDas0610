@@ -1,3 +1,3 @@
 ﻿namespace Application.DTOs;
 
-public sealed record EmpleadoDTO(int Id, string Nombre, string Apellido, double Sueldo);
+public sealed record EmpleadoDTO(int Id, string Nombre, string Apellido, DepartamentoDTO Departamento);

@@ -2,7 +2,7 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data;
+namespace Infrastructure.Data.Repositories;
 
 public class DepartamentoRepository(MainContext context) : IDepartamentoRepository
 {

@@ -7,6 +7,7 @@ public class MainContext(DbContextOptions<MainContext> options) : DbContext(opti
 {
     public DbSet<Empleado> Empleados { get; set; }
     public DbSet<Departamento> Departamentos { get; set; }
+    public DbSet<Sueldo> Sueldos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

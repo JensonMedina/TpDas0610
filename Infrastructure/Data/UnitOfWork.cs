@@ -1,18 +1,21 @@
 ﻿using Domain.Abstractions;
+using Infrastructure.Data.Repositories;
 
 namespace Infrastructure.Data;
 
 public class UnitOfWork : IUnitOfWork
 {
     private readonly MainContext _context;
-    public IDepartamentoRepository DepartamentoRepository { get; private set; }
-    public IEmpleadoRepository EmpleadoRepository { get; private set; }
+    public IDepartamentoRepository Departamentos { get; private set; }
+    public IEmpleadoRepository Empleados { get; private set; }
+    public ISueldoRepository Sueldos { get; private set; }
 
     public UnitOfWork(MainContext context)
     {
         _context = context;
-        this.DepartamentoRepository = new DepartamentoRepository(_context);
-        this.EmpleadoRepository = new EmpleadoRepository(_context);
+        this.Departamentos = new DepartamentoRepository(_context);
+        this.Empleados = new EmpleadoRepository(_context);
+        this.Sueldos = new SueldoRepository(_context);
     }
     public async Task<int> SaveChangesAsync(CancellationToken ct)
     {
