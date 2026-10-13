@@ -84,16 +84,16 @@ namespace Presentation
         }
         private async Task CreateDepartamentoAsync()
         {
-            var descripcion = LeerTexto("Descripcion: ");
-            var precioHora = LeerDouble("Valor hora: ");
+            var nombre = LeerTexto("Nombre: ");
+            var adicional = LeerDouble("Adicional: ");
 
-            Result<DepartamentoDTO> resultado = await createDepartamentoHandler.HandleAsync(new CreateDepartamentoCommand(descripcion, precioHora));
+            Result<DepartamentoDTO> resultado = await createDepartamentoHandler.HandleAsync(new CreateDepartamentoCommand(nombre, adicional));
 
             if (resultado.IsSuccess)
             {
                 Console.WriteLine("\n¡Operación exitosa!");
                 Console.WriteLine($"ID Creado: {resultado.Value.Id}");
-                Console.WriteLine($"Descripción: {resultado.Value.Descripcion}");
+                Console.WriteLine($"Descripción: {resultado.Value.Nombre}");
             }
             else
             {
@@ -117,7 +117,7 @@ namespace Presentation
                 {
                     foreach (var dept in resultado.Value)
                     {
-                        Console.WriteLine($"ID: {dept.Id} | Descripcion: {dept.Descripcion} | Precio Hora: ${dept.PrecioHora}");
+                        Console.WriteLine($"ID: {dept.Id} | Nombre: {dept.Nombre} | Precio Hora: ${dept.Adicional}");
                     }
                 }
                 else
@@ -147,7 +147,7 @@ namespace Presentation
             if (resultado.IsSuccess)
             {
                 Console.WriteLine("\n¡Empleado creado con éxito!");
-                Console.WriteLine($"ID: {resultado.Value.Id} | Nombre: {resultado.Value.Nombre} {resultado.Value.Apellido} | Depto: {resultado.Value.Departamento.Descripcion}");
+                Console.WriteLine($"ID: {resultado.Value.Id} | Nombre: {resultado.Value.Nombre} {resultado.Value.Apellido} | Depto: {resultado.Value.Departamento.Nombre}");
             }
             else
             {

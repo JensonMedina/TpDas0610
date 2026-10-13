@@ -7,6 +7,6 @@ public class Sueldo
     public int EmpleadoId { get; set; }
     public Empleado Empleado { get; set; } = null!;
     public int HorasTrabajadas { get; set; }
-    public double PrecioHora { get; set; } //Sirve como snapshot
-    public double MontoTotal { get; set; } //Sirve para no estar calculandolo cada vez que se quiera obtener
+    public double Adicional { get; set; } 
+    public double MontoTotal { get; set; } 
 }

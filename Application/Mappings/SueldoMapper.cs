@@ -6,14 +6,14 @@ namespace Application.Mappings;
 
 public static class SueldoMapper
 {
-    public static Sueldo ToEntity(CreateSueldoCommand command, double precioHora, double montoTotal)
+    public static Sueldo ToEntity(CreateSueldoCommand command, double adicional, double montoTotal)
     {
         return new Sueldo
         {
             FechaCalculo = DateTime.Now,
             EmpleadoId = command.EmpleadoId,
             HorasTrabajadas = command.HorasTrabajadas,
-            PrecioHora = precioHora,
+            Adicional = adicional,
             MontoTotal = montoTotal
         };
     }

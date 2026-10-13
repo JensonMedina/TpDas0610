@@ -9,6 +9,6 @@ public class StandarSueldoStrategy : ICalculateSueldoStrategy
     {
         ArgumentNullException.ThrowIfNull(departamento);
 
-        return horasTrabajadas * departamento.PrecioHora;
+        return horasTrabajadas * departamento.Adicional;
     }
 }

@@ -10,12 +10,12 @@ public static class DepartamentoMapper
     {
         return new Departamento
         {
-            Descripcion = command.Descripcion,
-            PrecioHora = command.PrecioHora,
+            Nombre = command.Descripcion,
+            Adicional = command.Adicional,
         };
     }
     public static DepartamentoDTO ToDto(Departamento departamento)
     {
-        return new DepartamentoDTO(departamento.Id, departamento.Descripcion, departamento.PrecioHora);
+        return new DepartamentoDTO(departamento.Id, departamento.Nombre, departamento.Adicional);
     }
 }

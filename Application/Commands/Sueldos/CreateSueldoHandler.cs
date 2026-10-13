@@ -23,7 +23,7 @@ public class CreateSueldoHandler(IUnitOfWork unitOfWork, ICalculateSueldoStrateg
 
         var montoSueldo = sueldoStrategy.Calculate(departamento, command.HorasTrabajadas);
 
-        var sueldo = SueldoMapper.ToEntity(command, departamento.PrecioHora, montoSueldo);
+        var sueldo = SueldoMapper.ToEntity(command, departamento.Adicional, montoSueldo);
 
         await unitOfWork.Sueldos.AddAsync(sueldo, ct);
         await unitOfWork.SaveChangesAsync(ct);
