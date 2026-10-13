@@ -12,12 +12,15 @@ public static class EmpleadoMapper
         {
             Nombre = command.Nombre,
             Apellido = command.Apellido,
-            DepartamentoId = command.DepartamentoId
+            DepartamentoId = command.DepartamentoId,
+            Legajo = command.Legajo,
+            SueldoBase = command.SueldoBase,
+            FechaIngreso = command.FechaIngreso
         };
     }
     public static EmpleadoDTO ToDto(Empleado empleado)
     {
         var departamentoDto = DepartamentoMapper.ToDto(empleado.Departamento);
-        return new EmpleadoDTO(empleado.Id, empleado.Nombre, empleado.Apellido, departamentoDto);
+        return new EmpleadoDTO(empleado.Id, empleado.Nombre, empleado.Apellido, departamentoDto, empleado.Legajo, empleado.SueldoBase, empleado.FechaIngreso);
     }
 }

@@ -18,4 +18,8 @@ public class EmpleadoRepository(MainContext context) : IEmpleadoRepository
     {
         return await context.Empleados.Include(e => e.Departamento).Where(e => e.Id == id).FirstOrDefaultAsync(ct);
     }
+    public async Task<bool> ExistByLegajo(int legajo, CancellationToken ct = default)
+    {
+        return await context.Empleados.AnyAsync(e => e.Legajo == legajo, ct);
+    }
 }

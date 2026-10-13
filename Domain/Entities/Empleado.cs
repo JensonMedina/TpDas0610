@@ -7,4 +7,7 @@ public class Empleado
     public string Apellido { get; set; } = string.Empty;
     public int DepartamentoId { get; set; }
     public Departamento Departamento { get; set; } = null!;
+    public int Legajo { get; set; }
+    public double SueldoBase { get; set; }
+    public DateTime FechaIngreso { get; set; }
 }

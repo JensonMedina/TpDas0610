@@ -141,8 +141,11 @@ namespace Presentation
             var nombre = LeerTexto("Nombre del empleado: ");
             var apellido = LeerTexto("Apellido del empleado: ");
             var departamentoId = LeerInt("ID del Departamento al que pertenece: ");
+            var legajo = LeerInt("Legajo del empleado: ");
+            var sueldoBase = LeerDouble("Sueldo base del empleado: ");
+            var fechaIngreso = LeerFecha("Fecha de ingreso del empleado en formato yyyy/mm/dd: ");
 
-            var resultado = await createEmpleadoHandler.HandleAsync(new CreateEmpleadoCommand(nombre, apellido, departamentoId));
+            var resultado = await createEmpleadoHandler.HandleAsync(new CreateEmpleadoCommand(nombre, apellido, departamentoId, legajo, sueldoBase, fechaIngreso));
 
             if (resultado.IsSuccess)
             {
@@ -256,6 +259,22 @@ namespace Presentation
             } while (string.IsNullOrWhiteSpace(valor));
 
             return valor.Trim();
+        }
+        private static DateTime LeerFecha(string etiqueta)
+        {
+            while (true)
+            {
+                System.Console.Write(etiqueta);
+
+                if (DateTime.TryParseExact(System.Console.ReadLine(), "yyyy/MM/dd",
+                                   CultureInfo.InvariantCulture,
+                                   DateTimeStyles.None,
+                                   out DateTime fechaValidada))
+                {
+                    return fechaValidada;
+                }
+                System.Console.WriteLine("Ingrese una fecha válida.");
+            }
         }
         private static double LeerDouble(string etiqueta)
         {
