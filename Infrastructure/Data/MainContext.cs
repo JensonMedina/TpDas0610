@@ -11,6 +11,12 @@ public class MainContext(DbContextOptions<MainContext> options) : DbContext(opti
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Empleado>().HasKey(e => e.Id);
+        modelBuilder.Entity<Empleado>().HasIndex(e => e.Legajo).IsUnique();
+        modelBuilder.Entity<Empleado>().Property(e => e.Nombre).HasMaxLength(100);
+        modelBuilder.Entity<Empleado>().Property(e => e.Apellido).HasMaxLength(100);
+        modelBuilder.Entity<Empleado>().Property(e => e.SueldoBase).HasColumnType("decimal(12,2)");
+
         base.OnModelCreating(modelBuilder);
     }
 }

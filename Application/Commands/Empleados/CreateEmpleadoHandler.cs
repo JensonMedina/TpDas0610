@@ -6,26 +6,33 @@ using Domain.Abstractions;
 
 namespace Application.Commands.Empleados;
 
-public sealed record CreateEmpleadoCommand(string Nombre, string Apellido, int DepartamentoId);
+public sealed record CreateEmpleadoCommand(string Nombre, string Apellido, int DepartamentoId, int Legajo, double SueldoBase, DateTime FechaIngreso);
 
 public class CreateEmpleadoHandler(IUnitOfWork unitOfWork) : ICreateEmpleadoHandler
 {
     public async Task<Result<EmpleadoDTO>> HandleAsync(CreateEmpleadoCommand command, CancellationToken ct = default)
     {
-        // 1. Validar y obtener el departamento previamente
+        if(command.FechaIngreso > DateTime.Now)
+        {
+            return Result<EmpleadoDTO>.Failure("La fecha de ingreso no puede ser superior a ahora.");
+        }
+
+        var existe = await unitOfWork.Empleados.ExistByLegajo(command.Legajo, ct);
+        if (existe)
+        {
+            return Result<EmpleadoDTO>.Failure("Ya existe un empleado con el legajo indicado. Intente con un legajo distinto por favor.");
+        }
+
         var departamento = await unitOfWork.Departamentos.GetByIdAsync(command.DepartamentoId, ct);
         if (departamento == null)
         {
             return Result<EmpleadoDTO>.Failure("El departamento especificado no existe.");
         }
 
-        // 2. Crear la entidad empleado
         var empleado = EmpleadoMapper.ToEntity(command);
 
-        // 3. Asignar explícitamente la navegación en memoria
         empleado.Departamento = departamento;
 
-        // 4. Persistir
         await unitOfWork.Empleados.AddAsync(empleado, ct);
         await unitOfWork.SaveChangesAsync(ct);
 
