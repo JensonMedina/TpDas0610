@@ -197,18 +197,24 @@ namespace Presentation
             Console.WriteLine("=== CALCULAR SUELDO ===");
 
             var empleadoId = LeerInt("Ingrese el ID del Empleado: ");
-            var horasTrabajadas = LeerInt("Ingrese las horas trabajadas: ");
 
-            var resultado = await createSueldoHandler.HandleAsync(new CreateSueldoCommand(empleadoId, horasTrabajadas));
+            var resultado = await createSueldoHandler.HandleAsync(new CreateSueldoCommand(empleadoId));
 
             if (resultado.IsSuccess)
             {
                 Console.WriteLine("\n¡Sueldo calculado y registrado con éxito!");
                 Console.WriteLine($"ID Liquidación: {resultado.Value.Id}");
-                Console.WriteLine($"Empleado ID: {resultado.Value.Empleado.Id}");
-                Console.WriteLine($"Horas Trabajadas: {resultado.Value.HorasTrabajadas}");
-                Console.WriteLine($"Monto Total Calculado: {resultado.Value.MontoTotal.ToString("C", culturaArgentina)}");
-                Console.WriteLine($"Fecha: {resultado.Value.FechaCalculo}");
+                Console.WriteLine($"Empleado ID: {resultado.Value.EmpleadoDTO.Id}");
+                Console.WriteLine($"Nombre del Empleado: {resultado.Value.EmpleadoDTO.Nombre} {resultado.Value.EmpleadoDTO.Apellido}");
+                Console.WriteLine($"Legajo: {resultado.Value.EmpleadoDTO.Legajo}");
+                Console.WriteLine($"Sueldo Base: {resultado.Value.SueldoBase}");
+                Console.WriteLine($"Antiguedad: {resultado.Value.Antiguedad}");
+                Console.WriteLine($"Adicional: {resultado.Value.Adicional}");
+                Console.WriteLine($"Bruto: {resultado.Value.Bruto}");
+                Console.WriteLine($"Descuentos: {resultado.Value.Descuentos}");
+                Console.WriteLine($"Neto: {resultado.Value.Neto}");
+                
+
             }
             else
             {
@@ -232,7 +238,7 @@ namespace Presentation
                 {
                     foreach (var s in resultado.Value)
                     {
-                        Console.WriteLine($"ID: {s.Id} | Empleado ID: {s.Empleado.Id} | Horas: {s.HorasTrabajadas} | Total: {s.MontoTotal.ToString("C", culturaArgentina)} | Fecha: {s.FechaCalculo}");
+                        //Console.WriteLine($"ID: {s.Id} | Empleado ID: {s.Empleado.Id} | Horas: {s.HorasTrabajadas} | Total: {s.MontoTotal.ToString("C", culturaArgentina)} | Fecha: {s.FechaCalculo}");
                     }
                 }
                 else

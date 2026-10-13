@@ -1,8 +1,9 @@
-﻿using Domain.Entities;
+﻿using Application.Strategies;
+using Domain.Entities;
 
 namespace Application.Abstractions.Sueldos;
 
 public interface ICalculateSueldoStrategy
 {
-    double Calculate(Departamento departamento, double horasTrabajadas);
+    StandarSueldo Calculate(Empleado empleado);
 }
