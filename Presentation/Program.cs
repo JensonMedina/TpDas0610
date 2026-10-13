@@ -12,6 +12,7 @@ using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,8 @@ builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 
 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-var connectionString = $"Data Source={Path.Combine(baseDirectory, "Sueldo.db")}";
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); //Leer cadena de conexion desde archivo appsettings.json
+var connectionString = $"Data Source={Path.Combine(baseDirectory, "Sueldo.db")}"; //Solo para pruebas en entorno local generamos una bd sqlite
 builder.Services.AddDbContext<MainContext>(options =>
 {
     options.UseSqlite(connectionString);
