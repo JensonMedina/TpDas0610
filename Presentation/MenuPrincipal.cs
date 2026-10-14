@@ -50,7 +50,7 @@ namespace Presentation
                             await CalcularSueldoAsync();
                             break;
                         case "6":
-                            await ListarSueldosAsync();
+                            //await ListarSueldosAsync(); //NO TERMINADO
                             break;
                         case "7":
                             salir = true;
@@ -223,36 +223,36 @@ namespace Presentation
             Console.WriteLine("\nPresione una tecla para continuar...");
             Console.ReadKey();
         }
-        private async Task ListarSueldosAsync()
-        {
-            Console.Clear();
-            Console.WriteLine("=== HISTORIAL DE SUELDOS REGISTRADOS ===");
+        //private async Task ListarSueldosAsync()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("=== HISTORIAL DE SUELDOS REGISTRADOS ===");
 
-            var resultado = await getSueldoHistoryHandler.HandleAsync(new GetSueldoHistoryQuery());
+        //    var resultado = await getSueldoHistoryHandler.HandleAsync(new GetSueldoHistoryQuery());
 
-            if (resultado.IsSuccess)
-            {
-                if (resultado.Value.Count > 0)
-                {
-                    foreach (var s in resultado.Value)
-                    {
-                        //Console.WriteLine($"ID: {s.Id} | Empleado ID: {s.Empleado.Id} | Horas: {s.HorasTrabajadas} | Total: {s.MontoTotal.ToString("C", culturaArgentina)} | Fecha: {s.FechaCalculo}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Aún no hay sueldos registrados.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("\nError al procesar la operación:");
-                Console.WriteLine($"[Error]: {resultado.Error}");
-            }
+        //    if (resultado.IsSuccess)
+        //    {
+        //        if (resultado.Value.Count > 0)
+        //        {
+        //            foreach (var s in resultado.Value)
+        //            {
+        //                //Console.WriteLine($"ID: {s.Id} | Empleado ID: {s.Empleado.Id} | Horas: {s.HorasTrabajadas} | Total: {s.MontoTotal.ToString("C", culturaArgentina)} | Fecha: {s.FechaCalculo}");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Aún no hay sueldos registrados.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("\nError al procesar la operación:");
+        //        Console.WriteLine($"[Error]: {resultado.Error}");
+        //    }
 
-            Console.WriteLine("\nPresione una tecla para continuar...");
-            Console.ReadKey();
-        }
+        //    Console.WriteLine("\nPresione una tecla para continuar...");
+        //    Console.ReadKey();
+        //}
         private static string LeerTexto(string etiqueta)
         {
             string? valor;

@@ -14,6 +14,10 @@ public class EmpleadoRepository(MainContext context) : IEmpleadoRepository
     {
         return await context.Empleados.Include(e => e.Departamento).ToListAsync(ct);
     }
+    public async Task<List<Empleado>> GetAllByDepartamentoAsync(int departamentoId, CancellationToken ct = default)
+    {
+        return await context.Empleados.Where(e => e.DepartamentoId == departamentoId).Include(e => e.Departamento).ToListAsync(ct);
+    }
     public async Task<Empleado?> GetByIdAsync(int id, CancellationToken ct = default)
     {
         return await context.Empleados.Include(e => e.Departamento).Where(e => e.Id == id).FirstOrDefaultAsync(ct);

@@ -1,6 +1,5 @@
 ﻿namespace Domain.Entities;
 
-//básico, antigüedad, adicional, bruto, descuentos, neto
 public class Sueldo
 {
     public int Id { get; set; }
