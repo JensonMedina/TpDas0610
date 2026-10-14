@@ -3,7 +3,7 @@ using Domain.Entities;
 
 namespace Application.Strategies;
 
-public sealed record StandarSueldo(int Antiguedad, double Adicional, double Bruto); 
+public sealed record StandarSueldo(double Antiguedad, double Adicional, double Bruto); 
 
 public sealed class StandarSueldoStrategy : ICalculateSueldoStrategy
 {
@@ -13,11 +13,12 @@ public sealed class StandarSueldoStrategy : ICalculateSueldoStrategy
 
         double sueldoBase = empleado.SueldoBase;
 
-        int antiguedad = CalcularAntiguedad(empleado.FechaIngreso);
+        int aniosAntiguedad = CalcularAntiguedad(empleado.FechaIngreso);
+        double antiguedad = (aniosAntiguedad * 0.01 * sueldoBase);
 
-        double adicional = sueldoBase * empleado.Departamento.Adicional;
+        double adicional = sueldoBase * empleado.Departamento.Adicional / 100;
 
-        double sueldoBruto = sueldoBase + antiguedad * 0.01 + adicional; 
+        double sueldoBruto = sueldoBase + antiguedad + adicional; 
 
         return new StandarSueldo(antiguedad, adicional, sueldoBruto);
     }

@@ -207,14 +207,12 @@ namespace Presentation
                 Console.WriteLine($"Empleado ID: {resultado.Value.EmpleadoDTO.Id}");
                 Console.WriteLine($"Nombre del Empleado: {resultado.Value.EmpleadoDTO.Nombre} {resultado.Value.EmpleadoDTO.Apellido}");
                 Console.WriteLine($"Legajo: {resultado.Value.EmpleadoDTO.Legajo}");
-                Console.WriteLine($"Sueldo Base: {resultado.Value.SueldoBase}");
-                Console.WriteLine($"Antiguedad: {resultado.Value.Antiguedad}");
-                Console.WriteLine($"Adicional: {resultado.Value.Adicional}");
-                Console.WriteLine($"Bruto: {resultado.Value.Bruto}");
-                Console.WriteLine($"Descuentos: {resultado.Value.Descuentos}");
-                Console.WriteLine($"Neto: {resultado.Value.Neto}");
-                
-
+                Console.WriteLine($"Sueldo Base: {resultado.Value.SueldoBase.ToString("C", culturaArgentina)}");
+                Console.WriteLine($"Antiguedad: {resultado.Value.Antiguedad.ToString("C", culturaArgentina)}");
+                Console.WriteLine($"Adicional: {resultado.Value.Adicional.ToString("C", culturaArgentina)}");
+                Console.WriteLine($"Bruto: {resultado.Value.Bruto.ToString("C", culturaArgentina)}");
+                Console.WriteLine($"Descuentos: {resultado.Value.Descuentos.ToString("C", culturaArgentina)}");
+                Console.WriteLine($"Neto: {resultado.Value.Neto.ToString("C", culturaArgentina)}");
             }
             else
             {

@@ -6,7 +6,7 @@ public class Sueldo
     public int Id { get; set; }
     public int EmpleadoId { get; set; }
     public Empleado Empleado { get; set; } = null!;
-    public int Antiguedad { get; set; }
+    public double Antiguedad { get; set; }
     public double Adicional { get; set; } //Snapshot
     public double Bruto { get; set; } 
     public double Descuentos { get; set; }
